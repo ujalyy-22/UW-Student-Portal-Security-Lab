@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Lab06 DFD" id="dfd">
+    <mxGraphModel dx="1051" dy="582" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1060" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c3" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=10 7;strokeColor=#C00000;strokeWidth=2;fontColor=#C00000;fontStyle=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;" value="Trust boundary: visitor&#39;s browser" vertex="1">
+          <mxGeometry height="500" width="400" x="280" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=10 7;strokeColor=#C00000;strokeWidth=2;fontColor=#C00000;fontStyle=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;" value="Trust boundary: GitHub Pages hosting" vertex="1">
+          <mxGeometry height="250" width="310" x="730" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#1F3864;strokeWidth=2;fontSize=15;" value="&lt;b&gt;Visitor / Attacker&lt;/b&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="30" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#1F3864;strokeWidth=2;fontSize=13;" value="&lt;b&gt;P1&lt;br&gt;UW Student Portal&lt;/b&gt;&lt;br&gt;(index.html + app.js&lt;br&gt;running in the browser)" vertex="1">
+          <mxGeometry height="200" width="200" x="410" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=#e2f0d9;strokeColor=#1F3864;strokeWidth=2;fontSize=13;" value="D1&amp;nbsp; Browser storage&lt;br&gt;(sessionStorage: uid only)" vertex="1">
+          <mxGeometry height="64" width="300" x="330" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=#e2f0d9;strokeColor=#1F3864;strokeWidth=2;fontSize=13;" value="D2&amp;nbsp; Static files from GitHub Pages&lt;br&gt;(index.html, app.js, style.css)" vertex="1">
+          <mxGeometry height="64" width="270" x="750" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=12;" value="No server API or database exists: all code and data run in the visitor&#39;s browser." vertex="1">
+          <mxGeometry height="30" width="600" x="230" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" edge="1" parent="1" source="c5" style="endArrow=block;endFill=1;html=1;strokeColor=#1F3864;strokeWidth=2;fontColor=#1F3864;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.28;entryX=0.04;entryY=0.61;entryDx=0;entryDy=0;" target="c6" value="1. Form input and URL parameters">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" source="c6" style="endArrow=block;endFill=1;html=1;strokeColor=#1F3864;strokeWidth=2;fontColor=#1F3864;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.04;exitY=0.81;exitDx=0;exitDy=0;entryX=1;entryY=0.78;" target="c5" value="2. Rendered page">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" edge="1" parent="1" source="c6" style="endArrow=block;endFill=1;html=1;strokeColor=#1F3864;strokeWidth=2;fontColor=#1F3864;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c7" value="3. Session id (uid) to storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" edge="1" parent="1" source="c8" style="endArrow=block;endFill=1;html=1;strokeColor=#1F3864;strokeWidth=2;fontColor=#1F3864;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="c6" value="4. Code and data downloaded">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
