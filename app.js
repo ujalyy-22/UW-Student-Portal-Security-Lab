@@ -31,18 +31,44 @@ function getSession() {
   return USERS.find((x) => String(x.id) === id) || null;
 }
 
+// A2(c): login throttling (demo only; resets on page reload)
+let failedAttempts = 0;
+let lockedUntil = 0;
+
+// A2(a): allow-list of same-site pages that ?next= may redirect to
+function redirectToNext(next) {
+   // Reviewed false positive: the target is a fixed allow-listed page, never user input.
+  if (next === "index.html") { location.href = "index.html"; return true; } // nosemgrep: open-redirect-location
+  return false;
+}
 $("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  // A2(c): refuse to sign in while locked
+  if (Date.now() < lockedUntil) {
+    const secs = Math.ceil((lockedUntil - Date.now()) / 1000);
+    $("loginMsg").textContent = "Too many failed attempts. Try again in " + secs + " seconds.";
+    return;
+  }
+
   const email = $("email").value;
   const pw = $("password").value;
   const u = USERS.find((x) => x.email === email);
   if (!u || (await sha256("uw" + u.id + pw)) !== u.passwordHash) {
+    failedAttempts++;
+    if (failedAttempts >= 3) {
+      lockedUntil = Date.now() + 30000;
+      failedAttempts = 0;
+      $("loginMsg").textContent = "Too many failed attempts. Sign-in is blocked for 30 seconds.";
+      return;
+    }
     $("loginMsg").textContent = "Login failed for " + email;
     return;
   }
+
+  failedAttempts = 0;
   sessionStorage.setItem("uid", String(u.id));
-  const next = params.get("next");
-  if (next) { location.href = next; return; }
+  if (redirectToNext(params.get("next"))) return;
   render();
 });
 
